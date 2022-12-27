@@ -4,7 +4,7 @@ from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-
+from tracetools_launch.action import Trace
 
 def generate_launch_description():
     robot_name_in_model = 'fishbot'
@@ -42,6 +42,7 @@ def generate_launch_description():
     #    output='screen',
         # arguments=['-d', default_rviz_config_path]
     #    )
+    ld.add_action(Trace(session_name='my-tracing-session',))
 
     ld.add_action(start_gazebo_cmd)
     ld.add_action(spawn_entity_cmd)
